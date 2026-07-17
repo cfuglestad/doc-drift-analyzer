@@ -1,9 +1,0 @@
-
----
-
-## `requirements.txt`
-
-```txt
-streamlit
-pypdf
-python-docx
