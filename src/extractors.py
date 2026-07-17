@@ -1,35 +1,41 @@
+"""Text extraction adapters for supported document formats."""
+
 import io
+from typing import Protocol
 
-try:
-    from pypdf import PdfReader
-except Exception:
-    PdfReader = None
+from docx import Document
+from pypdf import PdfReader
 
-try:
-    from docx import Document
-except Exception:
-    Document = None
+
+class UploadedFile(Protocol):
+    """Minimal interface required from an uploaded document."""
+
+    name: str
+
+    def read(self) -> bytes:
+        """Read the uploaded file content."""
+        ...
 
 
 def extract_text_from_txt(file_bytes: bytes) -> str:
+    """Decode UTF-8 text bytes while ignoring invalid byte sequences."""
     return file_bytes.decode("utf-8", errors="ignore")
 
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
-    if PdfReader is None:
-        raise ImportError("pypdf is not installed.")
+    """Extract and join text from each page of a PDF document."""
     reader = PdfReader(io.BytesIO(file_bytes))
     return "\n".join(page.extract_text() or "" for page in reader.pages)
 
 
 def extract_text_from_docx(file_bytes: bytes) -> str:
-    if Document is None:
-        raise ImportError("python-docx is not installed.")
+    """Extract and join paragraph text from a Word document."""
     doc = Document(io.BytesIO(file_bytes))
     return "\n".join(p.text for p in doc.paragraphs)
 
 
-def extract_text(uploaded_file) -> str:
+def extract_text(uploaded_file: UploadedFile | None) -> str:
+    """Dispatch an uploaded file to its format-specific extractor."""
     if uploaded_file is None:
         return ""
 
