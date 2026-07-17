@@ -1,11 +1,11 @@
 import streamlit as st
 
-from src.extractors import extract_text
-from src.text_utils import clean_text
-from src.sectioning import extract_sections
 from src.alignment import align_sections
 from src.diffing import classify_change, summarize_changes, word_diff_html
+from src.extractors import extract_text
+from src.sectioning import extract_sections
 from src.summarization import build_change_bullets
+from src.text_utils import clean_text
 
 st.set_page_config(page_title="Doc Drift Analyzer", layout="wide")
 
@@ -71,4 +71,7 @@ if st.button("Compare documents", type="primary"):
                     st.write(row["new_content"] or "<empty>")
 
                 st.markdown("**Inline diff**")
-                st.markdown(word_diff_html(row["old_content"], row["new_content"]), unsafe_allow_html=True)
+                st.markdown(
+                    word_diff_html(row["old_content"], row["new_content"]),
+                    unsafe_allow_html=True,
+                )

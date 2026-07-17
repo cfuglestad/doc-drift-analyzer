@@ -1,9 +1,12 @@
-from typing import List, Dict
+"""Human-readable summaries of document changes."""
+
 from src.diffing import classify_change
+from src.models import AlignmentRow
 
 
-def build_change_bullets(aligned_rows: List[Dict]) -> List[str]:
-    bullets = []
+def build_change_bullets(aligned_rows: list[AlignmentRow]) -> list[str]:
+    """Build concise bullet text for all changed alignment rows."""
+    bullets: list[str] = []
 
     for row in aligned_rows:
         label = classify_change(row["old_content"], row["new_content"], row["similarity"])
