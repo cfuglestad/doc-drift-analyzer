@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doc-drift-analyzer"
+version = "0.1.0"
+description = "NLP-assisted comparison of meaningful changes across document versions."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Connor Fuglestad" }]
+dependencies = [
+  "streamlit>=1.36",
+  "pypdf>=4.2",
+  "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.4",
+  "mypy>=1.10",
+  "pre-commit>=3.7",
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+  "ruff>=0.5",
+  "types-set
