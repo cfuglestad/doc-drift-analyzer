@@ -25,6 +25,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+semantic = [
+  "sentence-transformers>=5.2,<6",
+]
 dev = [
   "black>=25.1,<26",
   "mypy>=1.14,<1.20",

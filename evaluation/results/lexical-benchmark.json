@@ -1,0 +1,11 @@
+{
+  "backend": "lexical",
+  "threshold": 0.35,
+  "initialization_seconds": 4.8900023102760315e-05,
+  "cold_alignment_seconds": 0.03023039922118187,
+  "warm_alignment_seconds": 0.021090189926326275,
+  "average_scoring_seconds": 0.0004922298714518547,
+  "document_pair_alignment_seconds": 0.015528995990753174,
+  "approximate_peak_memory_bytes": 12128,
+  "rounds": 10
+}

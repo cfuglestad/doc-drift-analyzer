@@ -1,0 +1,295 @@
+{
+  "dataset": "synthetic-alignment-cases-v1",
+  "backend": "hybrid",
+  "model_identifier": "sentence-transformers/all-MiniLM-L6-v2",
+  "results": [
+    {
+      "backend": "hybrid",
+      "threshold": 0.4,
+      "metrics": {
+        "match_precision": 0.8571428571428571,
+        "match_recall": 0.8571428571428571,
+        "match_f1": 0.8571428571428571,
+        "exact_match_accuracy": 0.4,
+        "added_section_accuracy": 0.6666666666666666,
+        "removed_section_accuracy": 0.0,
+        "false_matches": 1,
+        "missed_matches": 1,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 6
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.45,
+      "metrics": {
+        "match_precision": 0.875,
+        "match_recall": 1.0,
+        "match_f1": 0.9333333333333333,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 0.6666666666666666,
+        "removed_section_accuracy": 0.0,
+        "false_matches": 1,
+        "missed_matches": 0,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 6
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.5,
+      "metrics": {
+        "match_precision": 0.875,
+        "match_recall": 1.0,
+        "match_f1": 0.9333333333333333,
+        "exact_match_accuracy": 0.8,
+        "added_section_accuracy": 0.6666666666666666,
+        "removed_section_accuracy": 0.5,
+        "false_matches": 1,
+        "missed_matches": 0,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 6
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.55,
+      "metrics": {
+        "match_precision": 0.8571428571428571,
+        "match_recall": 0.8571428571428571,
+        "match_f1": 0.8571428571428571,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 0.6666666666666666,
+        "removed_section_accuracy": 0.5,
+        "false_matches": 1,
+        "missed_matches": 1,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 6
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.6,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.7142857142857143,
+        "match_f1": 0.8333333333333333,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 2,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.62,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.7142857142857143,
+        "match_f1": 0.8333333333333333,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 2,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.64,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.66,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.68,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.7,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 7
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.72,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 9
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.74,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 9
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.76,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 9
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.78,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 9
+      }
+    },
+    {
+      "backend": "hybrid",
+      "threshold": 0.8,
+      "metrics": {
+        "match_precision": 1.0,
+        "match_recall": 0.5714285714285714,
+        "match_f1": 0.7272727272727273,
+        "exact_match_accuracy": 0.6,
+        "added_section_accuracy": 1.0,
+        "removed_section_accuracy": 1.0,
+        "false_matches": 0,
+        "missed_matches": 3,
+        "ambiguous_examples": 1,
+        "split_examples": 1,
+        "merged_examples": 1,
+        "unsupported_predictions": 9
+      }
+    }
+  ],
+  "recommended": {
+    "backend": "hybrid",
+    "threshold": 0.5,
+    "metrics": {
+      "match_precision": 0.875,
+      "match_recall": 1.0,
+      "match_f1": 0.9333333333333333,
+      "exact_match_accuracy": 0.8,
+      "added_section_accuracy": 0.6666666666666666,
+      "removed_section_accuracy": 0.5,
+      "false_matches": 1,
+      "missed_matches": 0,
+      "ambiguous_examples": 1,
+      "split_examples": 1,
+      "merged_examples": 1,
+      "unsupported_predictions": 6
+    }
+  }
+}

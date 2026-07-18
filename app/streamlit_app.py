@@ -1,12 +1,38 @@
 import streamlit as st
 
 from src.alignment import SectionAligner
+from src.config import (
+    DEFAULT_SEMANTIC_MODEL,
+    AlignmentConfig,
+    BackendSelection,
+    SimilarityBackendType,
+    build_backend,
+    recommended_threshold,
+)
 from src.diffing import classify_change, word_diff_html
 from src.extractors import extract_text
 from src.sectioning import extract_sections
-from src.similarity import LexicalSimilarityBackend
 from src.summarization import RuleBasedChangeSummarizer
 from src.text_utils import clean_text
+
+
+@st.cache_resource(show_spinner="Loading similarity backend...")
+def load_similarity_backend(
+    backend_type: SimilarityBackendType,
+    model_identifier: str,
+    lexical_weight: float,
+    semantic_weight: float,
+) -> BackendSelection:
+    """Construct and cache one reusable backend resource for the application."""
+    return build_backend(
+        AlignmentConfig(
+            backend=backend_type,
+            model_identifier=model_identifier,
+            lexical_weight=lexical_weight,
+            semantic_weight=semantic_weight,
+        )
+    )
+
 
 st.set_page_config(page_title="Doc Drift Analyzer", layout="wide")
 
@@ -21,7 +47,22 @@ with left:
 with right:
     new_file = st.file_uploader("New version", type=["txt", "pdf", "docx"], key="new_file")
 
-threshold = st.slider("Section alignment threshold", 0.1, 0.9, 0.35, 0.05)
+backend_type = SimilarityBackendType(
+    st.selectbox(
+        "Similarity backend",
+        options=[backend.value for backend in SimilarityBackendType],
+        index=0,
+        format_func=str.title,
+    )
+)
+threshold = st.slider(
+    "Section alignment threshold",
+    0.1,
+    0.9,
+    recommended_threshold(backend_type),
+    0.05,
+    key=f"threshold_{backend_type.value}",
+)
 show_unchanged = st.checkbox("Show unchanged sections", value=False)
 
 if st.button("Compare documents", type="primary"):
@@ -33,8 +74,21 @@ if st.button("Compare documents", type="primary"):
 
         old_sections = extract_sections(old_text)
         new_sections = extract_sections(new_text)
-        aligner = SectionAligner(similarity_backend=LexicalSimilarityBackend())
-        aligned = aligner.align(old_sections, new_sections, threshold)
+        selection = load_similarity_backend(
+            backend_type,
+            DEFAULT_SEMANTIC_MODEL,
+            lexical_weight=0.5,
+            semantic_weight=0.5,
+        )
+        if selection.fallback is not None:
+            st.warning(
+                f"{selection.requested_backend.value.title()} similarity is unavailable. "
+                f"Using lexical similarity instead: {selection.fallback.message}"
+            )
+        st.caption(f"Active similarity backend: {selection.active_backend.value.title()}")
+        active_threshold = selection.threshold if selection.fallback is not None else threshold
+        aligner = SectionAligner(similarity_backend=selection.backend)
+        aligned = aligner.align(old_sections, new_sections, active_threshold)
         summary = RuleBasedChangeSummarizer().summarize(aligned)
 
         st.subheader("Summary")

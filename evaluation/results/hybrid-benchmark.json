@@ -1,0 +1,11 @@
+{
+  "backend": "hybrid",
+  "threshold": 0.5,
+  "initialization_seconds": 105.58619330078363,
+  "cold_alignment_seconds": 1.0260675996541977,
+  "warm_alignment_seconds": 0.04666439965367317,
+  "average_scoring_seconds": 0.012133079767227172,
+  "document_pair_alignment_seconds": 0.10099925599992274,
+  "approximate_peak_memory_bytes": 249105805,
+  "rounds": 5
+}
