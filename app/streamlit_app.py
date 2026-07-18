@@ -1,10 +1,11 @@
 import streamlit as st
 
-from src.alignment import align_sections
-from src.diffing import classify_change, summarize_changes, word_diff_html
+from src.alignment import SectionAligner
+from src.diffing import classify_change, word_diff_html
 from src.extractors import extract_text
 from src.sectioning import extract_sections
-from src.summarization import build_change_bullets
+from src.similarity import LexicalSimilarityBackend
+from src.summarization import RuleBasedChangeSummarizer
 from src.text_utils import clean_text
 
 st.set_page_config(page_title="Doc Drift Analyzer", layout="wide")
@@ -32,46 +33,46 @@ if st.button("Compare documents", type="primary"):
 
         old_sections = extract_sections(old_text)
         new_sections = extract_sections(new_text)
-        aligned = align_sections(old_sections, new_sections, threshold)
-        summary = summarize_changes(aligned)
-        bullets = build_change_bullets(aligned)
+        aligner = SectionAligner(similarity_backend=LexicalSimilarityBackend())
+        aligned = aligner.align(old_sections, new_sections, threshold)
+        summary = RuleBasedChangeSummarizer().summarize(aligned)
 
         st.subheader("Summary")
         m1, m2, m3, m4, m5 = st.columns(5)
-        m1.metric("Added", summary["Added"])
-        m2.metric("Removed", summary["Removed"])
-        m3.metric("Minor edits", summary["Edited (minor)"])
-        m4.metric("Major edits", summary["Edited (major)"])
-        m5.metric("Unchanged", summary["Unchanged"])
+        m1.metric("Added", summary.added)
+        m2.metric("Removed", summary.removed)
+        m3.metric("Minor edits", summary.minor_edits)
+        m4.metric("Major edits", summary.major_edits)
+        m5.metric("Unchanged", summary.unchanged)
 
         st.markdown("### Key changes")
-        if bullets:
-            for bullet in bullets:
+        if summary.bullets:
+            for bullet in summary.bullets:
                 st.write(f"- {bullet}")
         else:
             st.info("No meaningful changes found.")
 
         st.markdown("### Detailed review")
         for row in aligned:
-            label = classify_change(row["old_content"], row["new_content"], row["similarity"])
+            label = classify_change(row.old_content, row.new_content, row.similarity)
             if not show_unchanged and label == "Unchanged":
                 continue
 
-            title = f"{label} | {row['old_title'] or 'None'} -> {row['new_title'] or 'None'}"
+            title = f"{label} | {row.old_title or 'None'} -> {row.new_title or 'None'}"
 
             with st.expander(title, expanded=(label in {"Added", "Removed", "Edited (major)"})):
-                st.caption(f"Similarity: {row['similarity']:.2f}")
+                st.caption(f"Similarity: {row.similarity:.2f}")
 
                 c1, c2 = st.columns(2)
                 with c1:
                     st.markdown("**Old**")
-                    st.write(row["old_content"] or "<empty>")
+                    st.write(row.old_content or "<empty>")
                 with c2:
                     st.markdown("**New**")
-                    st.write(row["new_content"] or "<empty>")
+                    st.write(row.new_content or "<empty>")
 
                 st.markdown("**Inline diff**")
                 st.markdown(
-                    word_diff_html(row["old_content"], row["new_content"]),
+                    word_diff_html(row.old_content, row.new_content),
                     unsafe_allow_html=True,
                 )

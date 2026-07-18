@@ -1,8 +1,9 @@
 """Change classification and inline diff utilities."""
 
 import difflib
+from collections.abc import Sequence
 
-from src.models import AlignmentRow, ChangeLabel
+from src.models import AlignmentInput, ChangeLabel, coerce_alignment
 
 _INSERTED_STYLE = "background-color:#d1fae5;padding:2px 4px;border-radius:4px;"
 _DELETED_STYLE = (
@@ -51,18 +52,9 @@ def word_diff_html(old_text: str, new_text: str) -> str:
     return " ".join(html_parts)
 
 
-def summarize_changes(aligned_rows: list[AlignmentRow]) -> dict[ChangeLabel, int]:
-    """Count change classifications across aligned document sections."""
-    summary: dict[ChangeLabel, int] = {
-        "Added": 0,
-        "Removed": 0,
-        "Edited (minor)": 0,
-        "Edited (major)": 0,
-        "Unchanged": 0,
-    }
+def summarize_changes(aligned_rows: Sequence[AlignmentInput]) -> dict[ChangeLabel, int]:
+    """Return legacy count output through the default summarizer service."""
+    from src.summarization import RuleBasedChangeSummarizer
 
-    for row in aligned_rows:
-        label = classify_change(row["old_content"], row["new_content"], row["similarity"])
-        summary[label] += 1
-
-    return summary
+    alignments = [coerce_alignment(row) for row in aligned_rows]
+    return RuleBasedChangeSummarizer().summarize(alignments).as_counts()
