@@ -34,21 +34,27 @@ inspect concise classifications and word-level differences within each aligned p
 
 ## Architecture
 
-The Streamlit layer coordinates small, independently testable modules under `src/`.
-Document parsing and comparison logic do not depend on the UI, keeping future API or CLI
-adapters practical.
+The Streamlit layer coordinates small, independently testable services under `src/`.
+Document parsing and comparison logic do not depend on the UI. Frozen domain models carry
+sections, alignments, and summaries through the core pipeline, while compatibility
+functions preserve the original dictionary-based APIs.
 
 ```mermaid
 flowchart LR
     A[Old and new files] --> B[Format extractors]
     B --> C[Text normalization]
     C --> D[Section extraction]
-    D --> E[Lexical section alignment]
-    E --> F[Change classification]
-    F --> G[Word-level diff]
-    F --> H[Change summary]
-    G --> I[Streamlit review UI]
-    H --> I
+    D --> E[SectionAligner]
+    J[SimilarityBackend protocol] --> E
+    K[LexicalSimilarityBackend] -. implements .-> J
+    E --> F[AlignmentResult models]
+    F --> G[Change classification]
+    F --> H[ChangeSummarizer protocol]
+    L[RuleBasedChangeSummarizer] -. implements .-> H
+    G --> I[Word-level diff]
+    H --> M[ChangeSummary model]
+    I --> N[Streamlit review UI]
+    M --> N
 ```
 
 | Component | Responsibility |
@@ -56,10 +62,36 @@ flowchart LR
 | `src/extractors.py` | Extract text from TXT, PDF, and DOCX inputs. |
 | `src/text_utils.py` | Normalize text and split paragraphs or sentences. |
 | `src/sectioning.py` | Convert document text into titled sections. |
-| `src/alignment.py` | Match old sections to new sections with lexical similarity. |
+| `src/similarity.py` | Define the similarity protocol and default lexical backend. |
+| `src/alignment.py` | Match sections using an explicitly injected similarity backend. |
 | `src/diffing.py` | Classify changes, count results, and render inline diffs. |
-| `src/summarization.py` | Produce concise human-readable change bullets. |
+| `src/summarization.py` | Define summarization behavior and deterministic defaults. |
+| `src/models.py` | Provide immutable domain models and compatibility adapters. |
 | `app/streamlit_app.py` | Orchestrate the comparison workflow and render the UI. |
+
+`SimilarityBackend` has one responsibility: scoring two strings. `SectionAligner` owns
+pairing, thresholding, and added/removed detection. `ChangeSummarizer` converts typed
+alignment results into counts and bullets; `RuleBasedChangeSummarizer` preserves the
+current deterministic wording. This separation allows a future semantic scorer to replace
+the lexical backend without changing alignment or presentation logic.
+
+Constructor injection keeps backend selection explicit:
+
+```python
+from src.alignment import SectionAligner
+from src.models import Section
+from src.similarity import LexicalSimilarityBackend
+
+aligner = SectionAligner(similarity_backend=LexicalSimilarityBackend())
+results = aligner.align(
+    [Section(title="Policy", content="Keep records.")],
+    [Section(title="Policy", content="Keep all records.")],
+    threshold=0.35,
+)
+```
+
+See [the Phase 2 design note](docs/architecture/phase-2-interfaces.md) for the interface
+boundaries and rationale.
 
 ## Installation
 
@@ -154,8 +186,8 @@ of 80% coverage.
 
 - [x] Modern Python packaging and automated quality gates
 - [x] Focused tests for the core document comparison pipeline
-- [ ] Define stable alignment and summarization interfaces
-- [ ] Introduce a configurable similarity backend
+- [x] Define stable alignment and summarization interfaces
+- [x] Introduce a configurable similarity backend
 - [ ] Add embedding-based semantic alignment alongside lexical alignment
 - [ ] Improve heading detection and support nested document structure
 - [ ] Add exportable comparison reports
@@ -163,11 +195,11 @@ of 80% coverage.
 
 ## Future improvements
 
-The next architectural phase will separate similarity scoring from alignment policy so the
-current `difflib` implementation can be exchanged for embedding-based similarity without
-coupling the core workflow to a specific model. Future work should also introduce explicit
-evaluation metrics, confidence reporting, large-document performance tests, and additional
-input adapters while preserving deterministic lexical behavior as a baseline.
+The next NLP phase can implement a semantic `SimilarityBackend` without coupling the core
+workflow to a specific model. That work should first introduce explicit evaluation metrics
+and representative fixtures, then compare semantic and lexical alignment quality. Other
+future work includes confidence reporting, large-document performance tests, and
+additional input adapters while preserving deterministic lexical behavior as a baseline.
 
 ## License
 
