@@ -1,0 +1,290 @@
+{
+  "name": "synthetic-alignment-cases-v1",
+  "document_pairs": [
+    {
+      "id": "policy_revision",
+      "old_sections": [
+        {
+          "id": "purpose_old",
+          "title": "PURPOSE",
+          "content": "Employees must submit weekly status reports to their manager each Friday."
+        },
+        {
+          "id": "security_old",
+          "title": "SECURITY",
+          "content": "Confidential files must be encrypted when stored and when transmitted."
+        },
+        {
+          "id": "legacy_old",
+          "title": "LEGACY PROCESS",
+          "content": "Printed reports are archived in the records room for ten years."
+        },
+        {
+          "id": "contact_old",
+          "title": "CONTACT",
+          "content": "Questions should be directed to the Operations team."
+        }
+      ],
+      "new_sections": [
+        {
+          "id": "security_new",
+          "title": "DATA PROTECTION",
+          "content": "Protect sensitive documents with encryption both at rest and while they travel across networks."
+        },
+        {
+          "id": "purpose_new",
+          "title": "PURPOSE",
+          "content": "Employees must submit a weekly status report to their manager every Friday."
+        },
+        {
+          "id": "contact_new",
+          "title": "CONTACT",
+          "content": "Questions should be directed to the Operations team."
+        },
+        {
+          "id": "retention_new",
+          "title": "RETENTION",
+          "content": "Digital reports are retained for seven years and then securely deleted."
+        }
+      ],
+      "labels": [
+        {
+          "old_section_ids": ["purpose_old"],
+          "new_section_ids": ["purpose_new"],
+          "relationship": "matched",
+          "difficulty": "easy",
+          "notes": "Light edit and reorder."
+        },
+        {
+          "old_section_ids": ["security_old"],
+          "new_section_ids": ["security_new"],
+          "relationship": "matched",
+          "difficulty": "hard",
+          "notes": "Renamed heading and semantic rewrite."
+        },
+        {
+          "old_section_ids": ["contact_old"],
+          "new_section_ids": ["contact_new"],
+          "relationship": "matched",
+          "difficulty": "easy",
+          "notes": "Unchanged boilerplate."
+        },
+        {
+          "old_section_ids": ["legacy_old"],
+          "new_section_ids": [],
+          "relationship": "removed",
+          "difficulty": "easy"
+        },
+        {
+          "old_section_ids": [],
+          "new_section_ids": ["retention_new"],
+          "relationship": "added",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "id": "workplace_handbook",
+      "old_sections": [
+        {
+          "id": "remote_old",
+          "title": "REMOTE WORK",
+          "content": "Employees may work from home up to two days per week with manager approval."
+        },
+        {
+          "id": "leave_old",
+          "title": "ANNUAL LEAVE",
+          "content": "Staff receive fifteen paid vacation days during each calendar year."
+        }
+      ],
+      "new_sections": [
+        {
+          "id": "leave_new",
+          "title": "PAID TIME OFF",
+          "content": "Each employee is granted fifteen days of paid vacation every year."
+        },
+        {
+          "id": "remote_new",
+          "title": "HYBRID WORK ARRANGEMENTS",
+          "content": "With supervisor consent, team members can perform their duties away from the office twice weekly."
+        },
+        {
+          "id": "travel_new",
+          "title": "BUSINESS TRAVEL",
+          "content": "Travel expenses require itemized receipts and approval within thirty days."
+        }
+      ],
+      "labels": [
+        {
+          "old_section_ids": ["remote_old"],
+          "new_section_ids": ["remote_new"],
+          "relationship": "matched",
+          "difficulty": "hard",
+          "notes": "Heavily rewritten but semantically equivalent."
+        },
+        {
+          "old_section_ids": ["leave_old"],
+          "new_section_ids": ["leave_new"],
+          "relationship": "matched",
+          "difficulty": "medium",
+          "notes": "Renamed and paraphrased."
+        },
+        {
+          "old_section_ids": [],
+          "new_section_ids": ["travel_new"],
+          "relationship": "added",
+          "difficulty": "easy",
+          "notes": "Unrelated new section."
+        }
+      ]
+    },
+    {
+      "id": "support_ambiguity",
+      "old_sections": [
+        {
+          "id": "support_old",
+          "title": "CUSTOMER SUPPORT",
+          "content": "Customers can contact the service team for assistance with their account."
+        },
+        {
+          "id": "expenses_old",
+          "title": "EXPENSE CLAIMS",
+          "content": "Submit receipts through the finance portal within thirty days."
+        }
+      ],
+      "new_sections": [
+        {
+          "id": "support_email_new",
+          "title": "EMAIL SUPPORT",
+          "content": "Account assistance is available from the service team by email."
+        },
+        {
+          "id": "support_phone_new",
+          "title": "PHONE SUPPORT",
+          "content": "The service team can resolve customer account questions by telephone."
+        },
+        {
+          "id": "benefits_new",
+          "title": "EMPLOYEE BENEFITS",
+          "content": "Eligible employees may enroll in health and retirement plans."
+        }
+      ],
+      "labels": [
+        {
+          "old_section_ids": ["support_old"],
+          "new_section_ids": ["support_email_new", "support_phone_new"],
+          "relationship": "ambiguous",
+          "difficulty": "hard",
+          "notes": "Both new sections are plausible one-to-one matches."
+        },
+        {
+          "old_section_ids": ["expenses_old"],
+          "new_section_ids": [],
+          "relationship": "removed",
+          "difficulty": "easy"
+        },
+        {
+          "old_section_ids": [],
+          "new_section_ids": ["benefits_new"],
+          "relationship": "added",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "id": "security_split",
+      "old_sections": [
+        {
+          "id": "security_combined_old",
+          "title": "SECURITY CONTROLS",
+          "content": "Use strong passwords for every account and encrypt confidential files."
+        },
+        {
+          "id": "scope_old",
+          "title": "SCOPE",
+          "content": "This policy applies to all employees and contractors."
+        }
+      ],
+      "new_sections": [
+        {
+          "id": "passwords_new",
+          "title": "ACCOUNT CREDENTIALS",
+          "content": "Every account must use a strong and unique password."
+        },
+        {
+          "id": "encryption_new",
+          "title": "FILE ENCRYPTION",
+          "content": "Confidential files must be protected with encryption."
+        },
+        {
+          "id": "scope_new",
+          "title": "SCOPE",
+          "content": "This policy applies to all employees and contractors."
+        }
+      ],
+      "labels": [
+        {
+          "old_section_ids": ["security_combined_old"],
+          "new_section_ids": ["passwords_new", "encryption_new"],
+          "relationship": "split",
+          "difficulty": "hard",
+          "notes": "Recorded for analysis; one-to-many alignment is unsupported."
+        },
+        {
+          "old_section_ids": ["scope_old"],
+          "new_section_ids": ["scope_new"],
+          "relationship": "matched",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "id": "records_merge",
+      "old_sections": [
+        {
+          "id": "retention_old",
+          "title": "RECORD RETENTION",
+          "content": "Keep financial records for seven years."
+        },
+        {
+          "id": "disposal_old",
+          "title": "RECORD DISPOSAL",
+          "content": "Destroy expired records using an approved secure method."
+        },
+        {
+          "id": "notice_old",
+          "title": "NOTICE",
+          "content": "Contact the Records team with questions."
+        }
+      ],
+      "new_sections": [
+        {
+          "id": "lifecycle_new",
+          "title": "RECORD LIFECYCLE",
+          "content": "Financial records are kept for seven years, then destroyed with an approved secure process."
+        },
+        {
+          "id": "notice_new",
+          "title": "NOTICE",
+          "content": "Contact the Records team with questions."
+        }
+      ],
+      "labels": [
+        {
+          "old_section_ids": ["retention_old", "disposal_old"],
+          "new_section_ids": ["lifecycle_new"],
+          "relationship": "merged",
+          "difficulty": "hard",
+          "notes": "Recorded for analysis; many-to-one alignment is unsupported."
+        },
+        {
+          "old_section_ids": ["notice_old"],
+          "new_section_ids": ["notice_new"],
+          "relationship": "matched",
+          "difficulty": "easy",
+          "notes": "Unchanged boilerplate."
+        }
+      ]
+    }
+  ]
+}

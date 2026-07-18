@@ -1,0 +1,11 @@
+{
+  "backend": "semantic",
+  "threshold": 0.65,
+  "initialization_seconds": 88.9456597007811,
+  "cold_alignment_seconds": 0.7109334990382195,
+  "warm_alignment_seconds": 0.008969879895448684,
+  "average_scoring_seconds": 0.014181499928236007,
+  "document_pair_alignment_seconds": 0.08086314000189304,
+  "approximate_peak_memory_bytes": 249102868,
+  "rounds": 5
+}
