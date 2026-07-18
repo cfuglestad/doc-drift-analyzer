@@ -3,7 +3,7 @@
 import pytest
 
 from src.alignment import align_sections, similarity
-from src.models import Section
+from src.models import SectionData
 
 
 def test_similarity_identical_and_different_text() -> None:
@@ -12,8 +12,8 @@ def test_similarity_identical_and_different_text() -> None:
 
 
 def test_align_sections_matches_best_section_and_marks_addition() -> None:
-    old_sections: list[Section] = [{"title": "Policy", "content": "Keep records."}]
-    new_sections: list[Section] = [
+    old_sections: list[SectionData] = [{"title": "Policy", "content": "Keep records."}]
+    new_sections: list[SectionData] = [
         {"title": "Appendix", "content": "Reference material."},
         {"title": "Policy", "content": "Keep records."},
     ]
@@ -35,8 +35,8 @@ def test_align_sections_matches_best_section_and_marks_addition() -> None:
 
 
 def test_align_sections_marks_below_threshold_sections_removed_and_added() -> None:
-    old_sections: list[Section] = [{"title": "Old", "content": "Legacy content"}]
-    new_sections: list[Section] = [{"title": "New", "content": "Replacement"}]
+    old_sections: list[SectionData] = [{"title": "Old", "content": "Legacy content"}]
+    new_sections: list[SectionData] = [{"title": "New", "content": "Replacement"}]
 
     aligned = align_sections(old_sections, new_sections, threshold=1.1)
 
@@ -48,11 +48,11 @@ def test_align_sections_marks_below_threshold_sections_removed_and_added() -> No
 
 
 def test_align_sections_does_not_reuse_a_new_section() -> None:
-    old_sections: list[Section] = [
+    old_sections: list[SectionData] = [
         {"title": "Policy", "content": "Same content"},
         {"title": "Policy", "content": "Same content"},
     ]
-    new_sections: list[Section] = [{"title": "Policy", "content": "Same content"}]
+    new_sections: list[SectionData] = [{"title": "Policy", "content": "Same content"}]
 
     aligned = align_sections(old_sections, new_sections)
 
