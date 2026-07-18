@@ -27,7 +27,7 @@ def extract_sections(text: str) -> list[Section]:
         if heading_pattern.match(stripped):
             if current_body:
                 sections.append(
-                    {"title": current_title, "content": "\n".join(current_body).strip()}
+                    Section(title=current_title, content="\n".join(current_body).strip())
                 )
             current_title = stripped
             current_body = []
@@ -35,6 +35,6 @@ def extract_sections(text: str) -> list[Section]:
             current_body.append(stripped)
 
     if current_body:
-        sections.append({"title": current_title, "content": "\n".join(current_body).strip()})
+        sections.append(Section(title=current_title, content="\n".join(current_body).strip()))
 
-    return [s for s in sections if s["content"]]
+    return [section for section in sections if section.content]
