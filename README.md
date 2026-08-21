@@ -10,7 +10,7 @@ Traditional line-based diffs become noisy when prose moves, headings change, or 
 
 Built for reviewing policies, procedures, contracts, and clinical guidelines where the meaning and location of changes matter more than raw line edits.
 
-> **Demo:** Screenshot and live link coming soon.
+> **[Try it live →](https://doc-drift-analyzer.streamlit.app/)**
 
 ## What it does
 
