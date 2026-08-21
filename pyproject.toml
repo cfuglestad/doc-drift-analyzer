@@ -46,6 +46,9 @@ Repository = "https://github.com/cfuglestad/doc-drift-analyzer"
 where = ["."]
 include = ["src*"]
 
+[tool.poetry]
+package-mode = false
+
 [tool.black]
 line-length = 100
 target-version = ["py312"]
