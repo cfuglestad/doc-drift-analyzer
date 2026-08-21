@@ -4,6 +4,86 @@
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+Compare two versions of a document and surface meaningful structural and textual changes. Upload a TXT, PDF, or DOCX file pair, and the tool aligns sections by similarity, classifies each change, and renders word-level inline diffs.
+
+Traditional line-based diffs become noisy when prose moves, headings change, or authors reformat. Doc Drift Analyzer provides a higher-level review: compare sections first, then inspect concise classifications and word-level differences within each aligned pair.
+
+Built for reviewing policies, procedures, contracts, and clinical guidelines where the meaning and location of changes matter more than raw line edits.
+
+> **Demo:** Screenshot and live link coming soon.
+
+## What it does
+
+1. Extracts text from TXT, PDF, or DOCX files
+2. Splits each document into titled sections (rule-based heading detection)
+3. Aligns sections between old and new versions using configurable similarity scoring
+4. Classifies each pair as added, removed, unchanged, minor edit, or major edit
+5. Renders word-level insertion/deletion/replacement highlighting
+6. Summarizes aggregate change metrics
+
+## Similarity backends
+
+| Backend | How it works | When to use |
+| --- | --- | --- |
+| Lexical | `difflib` sequence matching | Default. Fast, deterministic, no model needed. |
+| Semantic | Local sentence embeddings (`all-MiniLM-L6-v2`) | Rewrite-heavy documents where wording changes but meaning stays. |
+| Hybrid | 50/50 blend of both | Tested baseline; didn't outperform pure semantic on eval set. |
+
+All inference runs locally. Document text is never sent to an external API.
+
+## Quick start
+
+```bash
+git clone https://github.com/cfuglestad/doc-drift-analyzer.git
+cd doc-drift-analyzer
+python -m venv .venv && source .venv/bin/activate
+pip install -e .
+streamlit run app/streamlit_app.py
+```
+
+For semantic/hybrid similarity:
+
+```bash
+pip install -e ".[semantic]"
+```
+
+Sample healthcare documents are in `sample_data/` for a quick local comparison (a medication reconciliation policy revision showing added sections, minor edits, and major rewrites).
+
+## Tech stack
+
+- **Python 3.12**, strict MyPy typing throughout
+- **Streamlit** for the interactive review UI
+- **sentence-transformers** (optional) for local semantic embeddings
+- **pypdf + python-docx** for format extraction
+- **pytest** with 80% branch coverage floor, enforced in CI
+- **Ruff + Black** for formatting, GitHub Actions CI
+
+## Evaluation
+
+A labeled dataset of 5 document pairs supports reproducible benchmarking across all backends. Full methodology and results are in [`docs/evaluation/`](docs/evaluation/).
+
+| Backend | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: |
+| Lexical | 1.000 | 0.571 | 0.727 |
+| Semantic | 0.875 | 1.000 | 0.933 |
+| Hybrid | 0.875 | 1.000 | 0.933 |
+
+## Architecture
+
+Protocol-based dependency injection with single-responsibility modules. The Streamlit layer coordinates independently testable services; document parsing and comparison logic do not depend on the UI. Full architecture documentation and design decisions are in [`docs/architecture/`](docs/architecture/).
+
+## Development
+
+```bash
+pip install -e ".[dev]"
+pre-commit install
+pytest --cov=src --cov-report=term-missing --cov-fail-under=80
+```
+
+## License
+
+MIT
+
 Doc Drift Analyzer is a lightweight NLP application for comparing two versions of a
 document and surfacing meaningful structural and textual changes. It extracts text from
 common document formats, identifies sections, aligns related content, classifies changes,

@@ -1,7 +1,27 @@
-POLICY OVERVIEW
+PURPOSE AND SCOPE
 
-Members must be age 18 or older to qualify.
+This policy establishes the standard workflow for medication reconciliation at all inpatient facilities. It applies to all nursing staff, pharmacists, and attending physicians involved in patient transitions of care.
 
-DOCUMENTATION REQUIREMENTS
+DEFINITIONS
 
-Providers must submit proof of diagnosis and prior treatment history.
+Medication reconciliation is the process of comparing a patient's current medication orders against all medications the patient has been taking. This includes prescription medications, over-the-counter drugs, vitamins, and herbal supplements. The goal is to avoid omissions, duplications, dosing errors, and drug interactions.
+
+ADMISSION WORKFLOW
+
+Within 24 hours of admission, the assigned nurse must obtain a complete medication history from the patient or authorized representative. The nurse documents all current medications in the electronic health record, including drug name, dose, frequency, route, and indication when available. A pharmacist reviews the documented list against active orders within 4 hours.
+
+DISCHARGE WORKFLOW
+
+The attending physician reviews all medications prior to discharge and documents which medications should be continued, discontinued, or modified. The discharge medication list is printed and reviewed with the patient or caregiver before the patient leaves the unit. A teach-back method is used to confirm understanding.
+
+HIGH-RISK MEDICATIONS
+
+Patients taking anticoagulants, insulin, or opioids require a pharmacist-led counseling session prior to discharge. The counseling session must be documented in the patient's chart with the pharmacist's signature and date.
+
+STAFF TRAINING
+
+All nursing staff complete medication reconciliation training during orientation. Annual refresher training is required. Pharmacists receive additional training on high-risk medication interactions during quarterly continuing education sessions.
+
+AUDIT AND COMPLIANCE
+
+The pharmacy department conducts monthly audits of medication reconciliation completion rates. Results are reported to the Patient Safety Committee quarterly. Units falling below 90% compliance receive targeted re-education.

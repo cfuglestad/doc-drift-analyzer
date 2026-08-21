@@ -1,11 +1,31 @@
-POLICY OVERVIEW
+PURPOSE AND SCOPE
 
-Members must be age 21 or older to qualify.
+This policy establishes the standard workflow for medication reconciliation at all inpatient and outpatient facilities. It applies to all nursing staff, pharmacists, attending physicians, and advanced practice providers involved in patient transitions of care.
 
-DOCUMENTATION REQUIREMENTS
+DEFINITIONS
 
-Providers must submit proof of diagnosis, prior treatment history, and lab results.
+Medication reconciliation is the process of comparing a patient's current medication orders against all medications the patient has been taking. This includes prescription medications, over-the-counter drugs, vitamins, and herbal supplements. The goal is to avoid omissions, duplications, dosing errors, and drug interactions.
 
-EXCLUSIONS
+ADMISSION WORKFLOW
 
-Members enrolled in experimental treatment programs are excluded.
+Within 8 hours of admission, the assigned nurse must obtain a complete medication history from the patient or authorized representative. The nurse documents all current medications in the electronic health record, including drug name, dose, frequency, route, and indication when available. A pharmacist reviews the documented list against active orders within 2 hours of documentation. If discrepancies are identified, the pharmacist contacts the prescribing provider directly to resolve them before the next scheduled dose.
+
+DISCHARGE WORKFLOW
+
+The attending physician or advanced practice provider reviews all medications prior to discharge and documents which medications should be continued, discontinued, or modified. A clinical pharmacist verifies that no new drug interactions have been introduced by discharge changes. The discharge medication list is printed and reviewed with the patient or caregiver before the patient leaves the unit. A teach-back method is used to confirm understanding.
+
+TRANSITIONS BETWEEN UNITS
+
+When a patient transfers between inpatient units (e.g., ICU to general medicine), a focused medication reconciliation must occur within 4 hours of transfer. The receiving nurse verifies that all active orders transferred correctly and flags any discrepancies to the accepting provider.
+
+HIGH-RISK MEDICATIONS
+
+Patients taking anticoagulants, insulin, opioids, or chemotherapy agents require a pharmacist-led counseling session prior to discharge. The counseling session must be documented in the patient's chart with the pharmacist's signature and date. Patients on three or more high-risk medications must also receive a follow-up phone call within 48 hours of discharge.
+
+STAFF TRAINING
+
+All nursing staff and advanced practice providers complete medication reconciliation training during orientation. Annual refresher training is required. Pharmacists receive additional training on high-risk medication interactions during quarterly continuing education sessions. Competency assessments are administered annually and must be passed with a score of 85% or higher.
+
+AUDIT AND COMPLIANCE
+
+The pharmacy department conducts monthly audits of medication reconciliation completion rates. Results are reported to the Patient Safety Committee quarterly. Units falling below 95% compliance for two consecutive months receive targeted re-education and an action plan reviewed by nursing leadership.
